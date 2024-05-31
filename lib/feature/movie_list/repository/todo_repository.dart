@@ -1,23 +1,26 @@
-
 import 'package:dio/dio.dart';
+import 'package:tontonanku/helper/network/result.dart';
 import '../movie_list.dart';
+
 abstract class TodoRepository {
-  Future<Todos> getTodos();
+  Future<Result<Todos>> getTodos();
 }
 
 class TodoRepositoryImpl extends TodoRepository {
   final _dio = Dio();
   @override
-  Future<Todos> getTodos() async {
-    print("fetch");
+  Future<Result<Todos>> getTodos() async {
     try {
       final res = await _dio.get('https://jsonplaceholder.typicode.com/photos');
-      print(res.data);
-      final Todos todos = Todos.fromJson(res.data);
-      print(todos);
-      return todos;
+      if (res.statusCode == 200) {
+        final Todos todos = Todos.fromJson(res.data);
+        print("di repo data: $todos");
+        return NetworkSuccess( data: todos);
+      } else {
+        throw Exception('Failed to fetch data. Status code: ${res.statusCode}');
+      }
     } catch (e) {
-      throw Exception('Failed to load album');
+      return NetworkError(message: e.toString());
     }
   }
 }

@@ -41,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
     context.read<TodoProvider>().fetch();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: MovieList(todos: context.watch<TodoProvider>().todos),
+      body: const Center(
+        child: MovieList(),
       ),
 
     );
