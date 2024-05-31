@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tontonanku/feature/movie_list/state/todo_provider.dart';
 import 'feature/movie_list/movie_list.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(create: (context) => TodoProvider(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,18 +33,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late TodoRepository repo;
+
 
   @override
   void initState() {
     super.initState();
-    repo = TodoRepositoryImpl();
+    context.read<TodoProvider>().fetch();
   }
 
-  void _incrementCounter() {
-    repo.getTodos();
-    
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: MovieList(repo: repo),
+        child: MovieList(todos: context.watch<TodoProvider>().todos),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+
     );
   }
 }
