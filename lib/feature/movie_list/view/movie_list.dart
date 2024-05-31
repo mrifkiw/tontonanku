@@ -45,6 +45,7 @@ class _MovieListState extends State<MovieList> {
             itemCount: data?.results?.length,
             itemBuilder: (context, index) {
               print(data?.results?.length);
+              print(data?.page);
               final movie = data?.results?[index];
               if (movie == null) return const SizedBox.shrink();
 

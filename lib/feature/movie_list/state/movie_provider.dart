@@ -15,9 +15,9 @@ class MovieProvider extends ChangeNotifier {
       data = await _repo.fetchData(page);
     } else {
       final oldDataList = data.data?.results;
-      data = const NetworkLoading();
+
       data = await _repo.fetchData(page);
-      data.data?.results = [...?oldDataList, ...?data.data?.results];
+      data.data!.results?.insertAll(0, oldDataList as Iterable<Movie>);
     }
     page++;
 
