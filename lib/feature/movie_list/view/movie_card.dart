@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-
 import '../movie_list.dart';
 
 class MovieCard extends StatelessWidget {
-  final Todo todo;
+  final Movie movie;
 
-  const MovieCard({
-    super.key, required this.todo
-  });
+  const MovieCard({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +18,26 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.network(
-              todo.thumbnailUrl ??"",
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 2 - 16 * 3,
-              height: 120,
-              loadingBuilder: (context, child, loadingProgress) =>
-                  loadingProgress == null
-                      ? child
-                      : const Center(
-                          child: CircularProgressIndicator()),
-            ),
+                "https://image.tmdb.org/t/p/w500${movie.posterPath}" ?? "",
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width / 2 - 16 * 3,
+                height: 120,
+                errorBuilder: (context, error, stackTrace) => Container(
+                      height: 150,
+                      width: 150,
+                      color: Colors.red,
+                    ),
+                loadingBuilder: (context, child, loadingProgress) =>
+                    Center(child: child)),
           ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(todo.title ?? "",
+                Text(movie.title ?? "",
                     style: Theme.of(context).textTheme.titleSmall),
-                Text(todo.albumId.toString(),
+                Text(movie.releaseDate.toString(),
                     style: Theme.of(context).textTheme.bodySmall),
               ],
             ),

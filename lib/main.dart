@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tontonanku/feature/movie_list/state/todo_provider.dart';
+
 import 'feature/movie_list/movie_list.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (context) => TodoProvider(), child: const MyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MovieProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -33,12 +38,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   void initState() {
     super.initState();
-    context.read<TodoProvider>().fetch();
+    // context.read<TodoProvider>().fetch();
+    context.read<MovieProvider>().fetch();
   }
 
   @override
@@ -51,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: const Center(
         child: MovieList(),
       ),
-
     );
   }
 }

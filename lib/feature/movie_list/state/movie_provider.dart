@@ -1,20 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:tontonanku/helper/network/result.dart';
 
-// import 'package:provider/provider.dart';
+import '../movie_list.dart';
 
-// // class MovieProvider extends ChangeNotifierProvider {
-// //   final Movies movies;
+class MovieProvider extends ChangeNotifier {
+  Result<Movies> data = const NetworkNone();
 
-// //   MovieProvider(this.movies);
+  final MovieRepository _repo = MovieRepositoryImpl();
 
-// //   void fetchMovies() async {
-// //     movies.fetchMovies();
-// //     notifyListeners();
-// //   }
-// // }
+  void fetch() async {
+    data = const NetworkLoading();
+    data = await _repo.fetchData();
 
-// FutureProvider<Movies> fetchMovies() async {
-//   final repo = Movi();
-//   final movies = await repo.fetchMovies();
-//   return FutureProvider<Movies>.value(value: movies);
-// }
-
+    notifyListeners();
+  }
+}
