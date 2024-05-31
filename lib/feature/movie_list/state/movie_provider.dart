@@ -7,10 +7,19 @@ class MovieProvider extends ChangeNotifier {
   Result<Movies> data = const NetworkNone();
 
   final MovieRepository _repo = MovieRepositoryImpl();
+  int page = 1;
 
   void fetch() async {
-    data = const NetworkLoading();
-    data = await _repo.fetchData();
+    if (data.data == null) {
+      data = const NetworkLoading();
+      data = await _repo.fetchData(page);
+    } else {
+      final oldDataList = data.data?.results;
+      data = const NetworkLoading();
+      data = await _repo.fetchData(page);
+      data.data?.results = [...?oldDataList, ...?data.data?.results];
+    }
+    page++;
 
     notifyListeners();
   }

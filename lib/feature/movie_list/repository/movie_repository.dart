@@ -4,12 +4,12 @@ import '../../../helper/helper.dart';
 import '../movie_list.dart';
 
 abstract class MovieRepository {
-  Future<Result<Movies>> fetchData();
+  Future<Result<Movies>> fetchData(int page);
 }
 
 class MovieRepositoryImpl implements MovieRepository {
   @override
-  Future<Result<Movies>> fetchData() async {
+  Future<Result<Movies>> fetchData(int page) async {
     try {
       const baseUrl = String.fromEnvironment("tmdb_url");
 
@@ -17,7 +17,7 @@ class MovieRepositoryImpl implements MovieRepository {
         "include_adult": "false",
         "include_video": "false",
         "language": "en-US",
-        "page": "1",
+        "page": page,
         "sort_by": "popularity%2Edesc",
       };
 
