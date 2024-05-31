@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
+
+import '../model/todo.dart';
+
 class MovieCard extends StatelessWidget {
+  final Todo todo;
+
   const MovieCard({
-    super.key,
+    super.key, required this.todo
   });
 
   @override
@@ -16,7 +21,7 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.network(
-              "https://picsum.photos/300/150",
+              todo.thumbnailUrl ??"",
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width / 2 - 16 * 3,
               height: 120,
@@ -32,9 +37,9 @@ class MovieCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Wizards & Wiyona",
+                Text(todo.title ?? "",
                     style: Theme.of(context).textTheme.titleSmall),
-                Text("56 Episode",
+                Text(todo.albumId.toString(),
                     style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
