@@ -15,10 +15,14 @@ class MovieList extends StatelessWidget {
     return Consumer<MovieProvider>(builder: (context, provider, child) {
       return switch (provider.data) {
         NetworkSuccess(:final data) => ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: data?.results?.length,
             itemBuilder: (context, index) {
               final movie = data?.results?[index];
               if (movie == null) return const SizedBox.shrink();
+              if (data?.results?.last == data?.results?[index]) {
+                print("pagination gak sih wkwk");
+              }
               return MovieCard(movie: movie);
             },
           ),

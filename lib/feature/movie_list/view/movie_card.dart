@@ -14,14 +14,17 @@ class MovieCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.network(
                 "https://image.tmdb.org/t/p/w500${movie.posterPath}" ?? "",
                 fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width / 2 - 16 * 3,
-                height: 120,
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: 200,
                 errorBuilder: (context, error, stackTrace) => Container(
                       height: 150,
                       width: 150,
