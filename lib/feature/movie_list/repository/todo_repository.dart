@@ -1,7 +1,6 @@
 
 import 'package:dio/dio.dart';
-import 'package:tontonanku/model/todo.dart';
-
+import '../movie_list.dart';
 abstract class TodoRepository {
   Future<Todos> getTodos();
 }

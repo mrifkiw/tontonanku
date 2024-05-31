@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tontonanku/model/todo.dart';
-import 'package:tontonanku/repository/todo_repository.dart';
-import 'package:tontonanku/view/movie_card.dart';
+import '../movie_list.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({

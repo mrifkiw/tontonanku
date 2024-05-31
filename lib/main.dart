@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tontonanku/view/movie_card.dart';
-import 'package:tontonanku/view/movie_list.dart';
-
-import 'model/todo.dart';
-import 'repository/todo_repository.dart';
+import 'feature/movie_list/movie_list.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import '../model/todo.dart';
+import '../movie_list.dart';
 
 class MovieCard extends StatelessWidget {
   final Todo todo;
