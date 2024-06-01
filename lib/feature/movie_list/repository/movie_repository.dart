@@ -34,12 +34,12 @@ class MovieRepositoryImpl implements MovieRepository {
       if (res.statusCode == 200) {
         final Movies movies = Movies.fromJson(res.data);
 
-        return NetworkSuccess(data: movies);
+        return DataSuccess(data: movies);
       } else {
         throw Exception('Failed to fetch data. Status code: ${res.statusCode}');
       }
     } catch (e) {
-      return NetworkError(message: e.toString());
+      return DataError(message: e.toString());
     }
   }
 }

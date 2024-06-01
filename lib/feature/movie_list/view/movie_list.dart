@@ -39,7 +39,7 @@ class _MovieListState extends State<MovieList> {
   Widget build(BuildContext context) {
     return Consumer<MovieProvider>(builder: (context, provider, child) {
       return switch (provider.data) {
-        NetworkSuccess(:final data) => ListView.builder(
+        DataSuccess(:final data) => ListView.builder(
             controller: _scrollController,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: data?.results?.length,
@@ -65,9 +65,9 @@ class _MovieListState extends State<MovieList> {
               );
             },
           ),
-        NetworkLoading() => const CircularProgressIndicator(),
-        NetworkError(:final message) => Text(message ?? ""),
-        NetworkNone() => const SizedBox.shrink(),
+        Loading() => const CircularProgressIndicator(),
+        DataError(:final message) => Text(message ?? ""),
+        NoData() => const SizedBox.shrink(),
       };
     });
   }

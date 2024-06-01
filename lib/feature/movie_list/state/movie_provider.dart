@@ -4,14 +4,14 @@ import 'package:tontonanku/helper/network/result.dart';
 import '../movie_list.dart';
 
 class MovieProvider extends ChangeNotifier {
-  Result<Movies> data = const NetworkNone();
+  Result<Movies> data = const NoData();
 
   final MovieRepository _repo = MovieRepositoryImpl();
   int page = 1;
 
   void fetch() async {
     if (data.data == null) {
-      data = const NetworkLoading();
+      data = const Loading();
       data = await _repo.fetchData(page);
     } else {
       final oldDataList = data.data?.results;
