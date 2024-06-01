@@ -20,7 +20,7 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.network(
-                "https://image.tmdb.org/t/p/w500${movie.posterPath}" ?? "",
+                "https://image.tmdb.org/t/p/w500${movie.posterPath}",
                 fit: BoxFit.cover,
                 alignment: Alignment.center,
                 width: double.infinity,
