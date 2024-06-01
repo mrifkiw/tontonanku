@@ -61,7 +61,8 @@ class _MovieCardState extends State<MovieCard> {
                         style: Theme.of(context).textTheme.bodySmall),
                   ],
                 ),
-                IconButton(
+                BookmarkButton(
+                  isBookmark: isBookmark,
                   onPressed: () {
                     // final bookmark = Provider.of<BookmarkProvider>(context, listen: false);
                     // // bookmark.save(widget.movie);
@@ -74,14 +75,32 @@ class _MovieCardState extends State<MovieCard> {
                       isBookmark = !isBookmark;
                     });
                   },
-                  icon:
-                      Icon(isBookmark ? Icons.bookmark : Icons.bookmark_border),
                 )
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class BookmarkButton extends StatefulWidget {
+  final bool isBookmark;
+  final void Function()? onPressed;
+  const BookmarkButton(
+      {super.key, required this.isBookmark, required this.onPressed});
+
+  @override
+  State<BookmarkButton> createState() => _BookmarkButtonState();
+}
+
+class _BookmarkButtonState extends State<BookmarkButton> {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: widget.onPressed,
+      icon: Icon(widget.isBookmark ? Icons.bookmark : Icons.bookmark_border),
     );
   }
 }
