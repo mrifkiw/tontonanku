@@ -44,8 +44,6 @@ class _MovieListState extends State<MovieList> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: data?.results?.length,
             itemBuilder: (context, index) {
-              print(data?.results?.length);
-              print(data?.page);
               final movie = data?.results?[index];
               if (movie == null) return const SizedBox.shrink();
 
