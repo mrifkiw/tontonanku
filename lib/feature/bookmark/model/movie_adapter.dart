@@ -12,7 +12,6 @@ class MovieAdapter implements TypeAdapter<Movie> {
   }
 
   @override
-  // TODO: implement typeId
   int get typeId => 0;
 
   @override
