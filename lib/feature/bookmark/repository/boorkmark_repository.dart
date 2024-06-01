@@ -11,7 +11,6 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
   final _boxName = "bookmark";
   @override
   void bookmark(Movie movie) {
-
     final box = Hive.box(_boxName);
     box.add(movie);
   }
