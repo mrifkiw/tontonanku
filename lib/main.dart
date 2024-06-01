@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+
 import 'package:provider/provider.dart';
+import 'package:tontonanku/feature/bookmark/model/movie_adapter.dart';
+import 'package:tontonanku/feature/bookmark/state/bookmark_provider.dart';
 
 import 'feature/movie_list/movie_list.dart';
 
-void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => MovieProvider(),
-      child: const MyApp(),
-    ),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await prepareHive();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => MovieProvider()),
+      ChangeNotifierProvider(create: (_) => BookmarkProvider()),
+    ],
+    child: const MyApp(),
+  ));
+}
+
+Future<void> prepareHive() async {
+  await Hive.initFlutter();
+  await Hive.openBox("bookmark");
+  Hive.registerAdapter(MovieAdapter());
 }
 
 class MyApp extends StatelessWidget {
@@ -52,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const MovieList(),
+      body: const MovieListCard(),
     );
   }
 }

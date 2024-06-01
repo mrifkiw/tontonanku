@@ -1,12 +1,19 @@
+
 import 'package:flutter/material.dart';
 
 import '../movie_list.dart';
 
-class MovieCard extends StatelessWidget {
+class MovieCard extends StatefulWidget {
   final Movie movie;
 
   const MovieCard({super.key, required this.movie});
 
+  @override
+  State<MovieCard> createState() => _MovieCardState();
+}
+
+class _MovieCardState extends State<MovieCard> {
+  bool isBookmark = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +27,7 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.network(
-                "https://image.tmdb.org/t/p/w500${movie.posterPath}",
+                "https://image.tmdb.org/t/p/w500${widget.movie.posterPath}",
                 fit: BoxFit.cover,
                 alignment: Alignment.center,
                 width: double.infinity,
@@ -35,13 +42,36 @@ class MovieCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(movie.title ?? "",
-                    style: Theme.of(context).textTheme.titleSmall),
-                Text(movie.releaseDate.toString(),
-                    style: Theme.of(context).textTheme.bodySmall),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(widget.movie.title ?? "",
+                        style: Theme.of(context).textTheme.titleSmall),
+                    Text(widget.movie.releaseDate.toString(),
+                        style: Theme.of(context).textTheme.bodySmall),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {
+                    // final bookmark = Provider.of<BookmarkProvider>(context, listen: false);
+                    // // bookmark.save(widget.movie);
+                    // bookmark.fetch();
+                    //
+                    // log(bookmark.data.toString());
+
+
+                    setState(() {
+
+                      // log(widget.movie.title.toString());
+                      isBookmark = !isBookmark;
+                    });
+                  },
+                  icon:
+                      Icon(isBookmark ? Icons.bookmark : Icons.bookmark_border),
+                )
               ],
             ),
           ),

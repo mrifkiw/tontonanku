@@ -6,14 +6,14 @@ import 'package:tontonanku/helper/network/result.dart';
 
 import '../movie_list.dart';
 
-class MovieList extends StatefulWidget {
-  const MovieList({super.key});
+class MovieListCard extends StatefulWidget {
+  const MovieListCard({super.key});
 
   @override
-  State<MovieList> createState() => _MovieListState();
+  State<MovieListCard> createState() => _MovieListCardState();
 }
 
-class _MovieListState extends State<MovieList> {
+class _MovieListCardState extends State<MovieListCard> {
   final _scrollController = ScrollController();
   @override
   void initState() {
