@@ -1,19 +1,26 @@
-
 import 'package:flutter/material.dart';
 
 import '../movie_list.dart';
 
 class MovieCard extends StatefulWidget {
   final Movie movie;
+  final bool isBookmark;
 
-  const MovieCard({super.key, required this.movie});
+  const MovieCard({super.key, required this.movie, required this.isBookmark});
 
   @override
   State<MovieCard> createState() => _MovieCardState();
 }
 
 class _MovieCardState extends State<MovieCard> {
-  bool isBookmark = false;
+  late bool isBookmark;
+
+  @override
+  void initState() {
+    super.initState();
+    isBookmark = widget.isBookmark;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -62,9 +69,7 @@ class _MovieCardState extends State<MovieCard> {
                     //
                     // log(bookmark.data.toString());
 
-
                     setState(() {
-
                       // log(widget.movie.title.toString());
                       isBookmark = !isBookmark;
                     });

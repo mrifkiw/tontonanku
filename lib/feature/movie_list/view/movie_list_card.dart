@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tontonanku/feature/bookmark/state/bookmark_provider.dart';
 
 import 'package:tontonanku/helper/helper.dart';
 import 'package:tontonanku/helper/network/result.dart';
@@ -50,7 +51,13 @@ class _MovieListCardState extends State<MovieListCard> {
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  MovieCard(movie: movie),
+                  MovieCard(
+                    movie: movie,
+                    isBookmark: Provider.of<BookmarkProvider>(context)
+                            .data
+                            ?.contains(movie) ??
+                        false,
+                  ),
                   if (data?.results?.last == data?.results?[index]) ...[
                     if (provider.data.status == ResultStatus.loading) ...[
                       const Padding(
