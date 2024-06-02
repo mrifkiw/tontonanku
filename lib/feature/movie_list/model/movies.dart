@@ -104,4 +104,7 @@ class Movie {
     data['vote_count'] = voteCount;
     return data;
   }
+
+  @override
+  int get hashCode => Object.hash(id, title);
 }
