@@ -46,6 +46,13 @@ class Movie {
   double? voteAverage;
   int? voteCount;
 
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true; // Check for same reference
+
+    return other is Movie && other.id == id; // Compare properties
+  }
+
   Movie(
       {this.adult,
       this.backdropPath,
@@ -65,7 +72,7 @@ class Movie {
   Movie.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'].cast<int>();
+    genreIds = json['genre_ids']?.cast<int>();
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
@@ -97,4 +104,7 @@ class Movie {
     data['vote_count'] = voteCount;
     return data;
   }
+
+  @override
+  int get hashCode => Object.hash(id, title);
 }
