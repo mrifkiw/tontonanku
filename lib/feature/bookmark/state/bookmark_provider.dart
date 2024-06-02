@@ -18,6 +18,7 @@ class BookmarkProvider extends ChangeNotifier {
   void save(Movie movie) {
     var data = this.data.value;
     data?.add(movie);
+    print(data);
     _repo.persist(data ?? {});
     notifyListeners();
   }
@@ -25,6 +26,7 @@ class BookmarkProvider extends ChangeNotifier {
   void delete(Movie movie) {
     var data = this.data.value;
     data?.remove(movie);
+    print(data);
     _repo.persist(data ?? {});
     notifyListeners();
   }

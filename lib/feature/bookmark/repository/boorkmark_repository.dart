@@ -21,6 +21,7 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
       final res = (await _prefs).getStringList(key);
       final movies =
           res?.map((e) => Movie.fromJson(jsonDecode(e))).toSet() ?? {};
+
       return DataSuccess(data: movies);
     } catch (e) {
       throw DataError(message: e.toString());

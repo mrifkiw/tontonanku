@@ -33,7 +33,7 @@ class _MoviePageState extends State<MoviePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const BookmarkPage(),
-                    barrierDismissible: true,
+                    maintainState: false,
                   ),
                 );
               },
