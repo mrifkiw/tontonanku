@@ -18,7 +18,7 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
   @override
   List<Movie> getData() {
     final box = Hive.box(_boxName);
-    final movies = box.values.toList().cast<Movie>;
-    return movies();
+    final movies = box.values.toList().cast<Movie>();
+    return movies;
   }
 }
