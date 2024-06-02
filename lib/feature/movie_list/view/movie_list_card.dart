@@ -40,7 +40,7 @@ class _MovieListCardState extends State<MovieListCard> {
   Widget build(BuildContext context) {
     return Consumer<MovieProvider>(builder: (context, provider, child) {
       return switch (provider.data) {
-        DataSuccess(:final data) => ListView.builder(
+        DataSuccess(value: final data) => ListView.builder(
             controller: _scrollController,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: data?.results?.length,
@@ -55,6 +55,7 @@ class _MovieListCardState extends State<MovieListCard> {
                     movie: movie,
                     isBookmark: Provider.of<BookmarkProvider>(context)
                             .data
+                            .value
                             ?.contains(movie) ??
                         false,
                   ),

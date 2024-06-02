@@ -10,14 +10,14 @@ class MovieProvider extends ChangeNotifier {
   int page = 1;
 
   void fetch() async {
-    if (data.data == null) {
+    if (data.value == null) {
       data = const Loading();
       data = await _repo.fetchData(page);
     } else {
-      final oldDataList = data.data?.results;
+      final oldDataList = data.value?.results;
 
       data = await _repo.fetchData(page);
-      data.data!.results?.insertAll(0, oldDataList as Iterable<Movie>);
+      data.value!.results?.insertAll(0, oldDataList as Iterable<Movie>);
     }
     page++;
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tontonanku/feature/bookmark/bookmark.dart';
 
 import '../movie_list.dart';
 
@@ -64,16 +66,18 @@ class _MovieCardState extends State<MovieCard> {
                 BookmarkButton(
                   isBookmark: isBookmark,
                   onPressed: () {
-                    // final bookmark = Provider.of<BookmarkProvider>(context, listen: false);
-                    // // bookmark.save(widget.movie);
-                    // bookmark.fetch();
-                    //
-                    // log(bookmark.data.toString());
-
                     setState(() {
-                      // log(widget.movie.title.toString());
                       isBookmark = !isBookmark;
                     });
+
+                    final provider =
+                        Provider.of<BookmarkProvider>(context, listen: false);
+
+                    if (isBookmark) {
+                      provider.save(widget.movie);
+                    } else {
+                      provider.delete(widget.movie);
+                    }
                   },
                 )
               ],

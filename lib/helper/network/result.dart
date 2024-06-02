@@ -7,19 +7,19 @@ enum ResultStatus {
 
 sealed class Result<T> {
   final ResultStatus status;
-  final T? data;
+  final T? value;
   final String? message;
 
   const Result({
     required this.status,
-    this.data,
+    this.value,
     this.message,
   });
 }
 
 class DataSuccess<T> extends Result<T> {
   const DataSuccess({required T data})
-      : super(status: ResultStatus.success, data: data);
+      : super(status: ResultStatus.success, value: data);
 }
 
 class Loading<T> extends Result<T> {
