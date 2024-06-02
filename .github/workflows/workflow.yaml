@@ -1,4 +1,4 @@
-name: CI Tontonanku 
+name: Tontonanku CI
 
 on:
   pull_request:
